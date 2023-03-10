@@ -1,14 +1,10 @@
 import json
 import ssl
 import time
-#from datetime import datetime
 from pathlib import Path
 from urllib.request import urlretrieve
 
 from tqdm import tqdm
-
-#import requests
-
 
 def get_card_images():
     print('Starting up.')
@@ -78,12 +74,6 @@ def get_card_images():
                 time.sleep(4)
             time.sleep(0.25)
 
-
-
-        #urlretrieve('https://images.ygoprodeck.com/images/cards_cropped/34541863.jpg',filename='test.jpg')
-
-
-        
 
 if __name__ == "__main__":
     get_card_images()

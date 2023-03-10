@@ -3,7 +3,7 @@ import json
 import requests
 
 from get_cards_json import get_cards_json
-
+from get_card_images import get_card_images
 
 def get_current_api_version():
     url = "https://db.ygoprodeck.com/api/v7/checkDBVer.php"
@@ -19,6 +19,7 @@ def get_current_api_version():
         with open('api_version.json','w+') as f:
             f.write(json.dumps(api_version,indent=2))
         get_cards_json()
+        get_card_images()
         repo_verson = api_version
         
     if api_version[0]['database_version'] == repo_verson[0]['database_version']:
@@ -28,6 +29,7 @@ def get_current_api_version():
         with open('api_version.json','w+') as f:
             f.write(json.dumps(api_version,indent=2))
         get_cards_json()
+        get_card_images()
 
     print(repo_verson)
 
