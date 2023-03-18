@@ -6,7 +6,7 @@ from urllib.request import urlretrieve
 
 from tqdm import tqdm
 
-def get_card_images():
+def get_card_images(overwrite=False):
     print('Starting up.')
 
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -46,7 +46,7 @@ def get_card_images():
             card_cropped_image_url = None
 
 
-        if has_normal_image == False and card_normal_image_url != None:
+        if (overwrite == True or has_normal_image == False) and card_normal_image_url != None:
             print(f'\nDownloading the normal-sized image for card ID #{card_id}.')
             try:
                 urlretrieve(card_normal_image_url,filename=f'card_images/image_normal/{card_id}.jpg')
@@ -55,7 +55,7 @@ def get_card_images():
                 time.sleep(4)
             time.sleep(0.25)
 
-        if has_small_image == False and card_small_image_url != None:
+        if (overwrite == True or has_small_image == False) and card_small_image_url != None:
             print(f'\nDownloading the small-sized image for card ID #{card_id}.')
             try:
                 urlretrieve(card_small_image_url,filename=f'card_images/image_small/{card_id}.jpg')
@@ -65,7 +65,7 @@ def get_card_images():
                 
             time.sleep(0.25)
 
-        if has_cropped_image == False and card_cropped_image_url != None:
+        if (overwrite == True or has_cropped_image == False) and card_cropped_image_url != None:
             print(f'\nDownloading the cropped image for card ID #{card_id}.')
             try:
                 urlretrieve(card_cropped_image_url,filename=f'card_images/image_cropped/{card_id}.jpg')
@@ -76,4 +76,4 @@ def get_card_images():
 
 
 if __name__ == "__main__":
-    get_card_images()
+    get_card_images(True)
