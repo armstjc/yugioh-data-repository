@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 import requests
@@ -32,6 +33,14 @@ def get_current_api_version():
         get_card_images()
 
     print(repo_verson)
+
+    now = datetime.now()
+    current_year = now.year
+    current_month = now.month
+    current_day = now.day
+    with open('timestamp.json','w+') as f:
+        f.write(f"{{ \"year\":{current_year},\"month\":{current_month},\"day\":{current_day} }}")
+
 
 if __name__ == "__main__":
     get_current_api_version()
